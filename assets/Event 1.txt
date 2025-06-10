@@ -1,0 +1,19 @@
+Event 1: 
+CodeCraft 2025
+A 48-hour coding marathon where creativity meets caffeine! Participants team up to build real-world apps, pitch to judges, and win exciting prizes. Ideal for devs who love late-night coding and innovation.
+link:https://github.com/FOSSCLUB-LBSITW
+
+ Event 2:
+ Design Fiesta
+A one-day celebration of UI/UX design and creative thinking. Engage in live Figma challenges, wireframe battles, and design reviews with top mentors and design professionals.
+link:https://github.com/FOSSCLUB-LBSITW
+
+
+Event 3: Bug Hunt Blitz
+A fast-paced competition where teams race to squash bugs in legacy codebases. Perfect for students who love debugging, reverse engineering, and solving tricky logic puzzles.
+link:https://github.com/FOSSCLUB-LBSITW
+
+Event 4: Open Source Contribute-a-thon
+Learn GitHub workflows and contribute to real-world open-source projects. This event pairs beginners with experienced contributors to help them make their first PRs and build their GitHub profile.
+link:https://github.com/FOSSCLUB-LBSITW
+
