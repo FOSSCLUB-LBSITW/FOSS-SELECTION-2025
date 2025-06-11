@@ -20,7 +20,7 @@ All event images and details are included under the `/assets` folder and within 
 
 ---
 
-💼 How to Clone and Contribute
+## 💼 How to Clone and Contribute
 Follow these steps to fork, clone, and contribute:
 
 1. Fork the Repository
