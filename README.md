@@ -15,35 +15,37 @@ ii) Click the Fork button to create a copy in your Github account.
 ```bash
   git checkout -b your-branch-name
 ```
-### 2.Clone to Your Local System 🔁
+### 3.Clone to Your Local System 🔁
 
 ```bash
-  git clone "https://github.com/FOSSCLUB-LBSITW/FOSS-SELECTION-2025.git"
+  git clone "your_link"
 ```
 
-### 3.Navigate to the Directory🌱
+### 4.Navigate to the Directory🌱
 
 ```bash
-  cd FOSS-SELECTION-2025
+  cd directory_name
 ```
 
-### 4. Edit accordinly, make changes in your Local System 📁.
+### 5. Edit accordinly, make changes in your Local System 📁.
 
-### 5. Add the files to your Repository ➕:
+### 6. Add the files to your Repository ➕:
 
 ```bash
  git add .
  ```
 
- ### 6. Commit the Changes ✍️:
+ ### 7. Commit the Changes ✍️:
 
 ```bash
  git commit -m "commit_message"
  ```
 
- ### 5. Push to your Repository 🫸🏻:
+ ### 8. Push to your Branch 🫸🏻:
 
 ```bash
- git push origin main 
+ git push origin branch_name 
  ```
+### 9. Now you can see "Compare & pull request" in your forked repository to request .
 
+Thus collaboration 🤝 will be successful...
