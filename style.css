@@ -28,9 +28,22 @@ body {
   text-align: left;
   transition: transform 0.2s ease;
 }
+.event-card2{background-color: #fafadb;
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  max-width: 400px;
+  text-align: left;
+  transition: transform 0.2s ease;
+}
+
 
 .event-card:hover {
   transform: translateY(-5px);
+}
+
+.event-card2:hover {
+  transform: translateY(-10px);
 }
 
 .event-title {
