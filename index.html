@@ -1,30 +1,600 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Events</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOSS Club Events 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+
+        /* Background Animation */
+        .bg-decoration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-shape {
+            position: absolute;
+            opacity: 0.1;
+            background: white;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-shape:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+
+        .floating-shape:nth-child(2) {
+            top: 20%;
+            right: 15%;
+            width: 40px;
+            height: 40px;
+            transform: rotate(45deg);
+            animation-delay: 2s;
+        }
+
+        .floating-shape:nth-child(3) {
+            bottom: 30%;
+            left: 20%;
+            width: 50px;
+            height: 50px;
+            border-radius: 20px;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Header Section */
+        .header-section {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .quote-banner {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 0 auto 30px;
+            max-width: 600px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .quote-text {
+            font-size: 1.1rem;
+            color: white;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .quote-author {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: white;
+            font-weight: 800;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .stats-section {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 15px 25px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Carousel Container */
+        .carousel-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+            gap: 20px;
+        }
+
+        /* Event Cards - Smaller Size */
+        .event-card {
+            flex: 0 0 280px;
+            width: 280px;
+            height: 400px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            z-index: 5;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .card-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .card-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 0.8rem;
+            color: #95a5a6;
+        }
+
+        .card-description {
+            color: #7f8c8d;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .register-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            width: 100%;
+        }
+
+        .register-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Controls */
+        .carousel-controls {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .control-btn {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .dots {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .dot {
+            display: inline-block;
+            height: 12px;
+            width: 12px;
+            margin: 0 8px;
+            background-color: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background-color: white;
+            transform: scale(1.2);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .event-card {
+                flex: 0 0 250px;
+                width: 250px;
+                height: 360px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .stats-section {
+                gap: 20px;
+            }
+
+            .carousel-container {
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .event-card {
+                flex: 0 0 220px;
+                width: 220px;
+                height: 340px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .stats-section {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .card-content {
+                padding: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
-
-  
-
-    <h2 class="section-title"> Events</h2>
-    
-    <div class="card-container">
-      <div class="event-card">
-        <div class="image-wrapper">
-    <img src="./assets/images (1).jpg" alt="Hacktober">
-  </div>
-        <h3 class="event-title">Hacktober Fest 2025</h3>
-        <p class="event-desc">
-          Join thousands of developers in this open-source celebration and contribute to exciting projects from around the world!
-        </p>
-        <a href="https://hacktoberfest.com/" class="event-link">Read more →</a>
-      </div>
+    <div class="bg-decoration">
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
     </div>
-  </section>
 
+    <div class="header-section">
+        <div class="quote-banner">
+            <div class="quote-text">"Innovation distinguishes between a leader and a follower."</div>
+            <div class="quote-author">- Steve Jobs</div>
+        </div>
+        
+        <h2 class="section-title">FOSS Events 2025</h2>
+        <p class="section-subtitle">Join our community of innovators and creators</p>
+        
+        <div class="stats-section">
+            <div class="stat-item">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Active Members</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Upcoming Events</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">Projects Built</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="carousel-container">
+        <div class="carousel" id="carousel">
+            <!-- Hacktoberfest 2025 -->
+            <div class="event-card">
+                <div class="card-badge">POPULAR</div>
+                <img src="assets/images (1).jpg" style="height: 150px;object-fit: contain;"/>
+/>
+                <div class="card-content">
+                    <h3 class="card-title">Hacktoberfest 2025</h3>
+                    <div class="card-details">
+                        <span>📅 Oct 1-31</span>
+                        <span>👥 Global Event</span>
+                    </div>
+                    <p class="card-description">Join thousands of developers in this open-source celebration and contribute to exciting projects from around the world!</p>
+                    <a href="https://hacktoberfest.com/" class="register-btn" target="_blank">Register Now</a>
+                </div>
+            </div>
+
+            <!-- CodeCraft 2025 -->
+            <div class="event-card">
+                <div class="card-badge">FLAGSHIP</div>
+                <img src="assets/beautiful-logo-c.png" style="height: 150px; object-fit: contain;" alt="CodeCraft" class="card-image">
+                <div class="card-content">
+                    <h3 class="card-title">CodeCraft 2025</h3>
+                    <div class="card-details">
+                        <span>📅 Jan 20-22</span>
+                        <span>👥 100+ participants</span>
+                    </div>
+                    <p class="card-description">A 48-hour coding marathon where creativity meets caffeine! Build real-world apps and win exciting prizes.</p>
+                    <a href="code.html" class="register-btn">Register Now</a>
+                </div>
+            </div>
+
+            <!-- Design Fiesta -->
+            <div class="event-card">
+                <div class="card-badge">CREATIVE</div>
+                <img src="assets/Design Fiesta logo.png" style="height: 150px; object-fit: contain;"/>
+            
+                <div class="card-content">
+                    <h3 class="card-title">Design Fiesta</h3>
+                    <div class="card-details">
+                        <span>📅 Feb 10-11</span>
+                        <span>👥 75+ participants</span>
+                    </div>
+                    <p class="card-description">A celebration of UI/UX design. Engage in live Figma challenges, wireframe battles, and design reviews.</p>
+                    <a href="design.html" class="register-btn">Register Now</a>
+                </div>
+            </div>
+
+            <!-- Bug Hunt Blitz -->
+            <div class="event-card">
+                <div class="card-badge">CHALLENGE</div>
+                <img src="assets/Bug Hunt Blitz logo .png" style="height: 150px; object-fit: contain;"/>
+                <div class="card-content">
+                    <h3 class="card-title">Bug Hunt Blitz</h3>
+                    <div class="card-details">
+                        <span>📅 Mar 5-6</span>
+                        <span>👥 60+ participants</span>
+                    </div>
+                    <p class="card-description">A fast-paced competition where teams race to squash bugs in legacy codebases. Perfect for debugging lovers!</p>
+                    <a href="bug.html" class="register-btn">Register Now</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dots -->
+        <div class="dots" id="dots">
+            <span class="dot active" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+        </div>
+
+        <!-- Controls -->
+        <div class="carousel-controls">
+            <button class="control-btn" onclick="prevSlide()">← Previous</button>
+            <button class="control-btn" onclick="nextSlide()">Next →</button>
+            <button class="control-btn" onclick="toggleAutoplay()" id="playPauseBtn">⏸️ Pause</button>
+        </div>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        let isAutoPlaying = true;
+        let autoplayInterval;
+        const totalSlides = 4;
+        const carousel = document.getElementById('carousel');
+        const dots = document.querySelectorAll('.dot');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+
+        // Calculate slide width based on card width + gap
+        const slideWidth = 300; // 280px card + 20px gap
+
+        function updateCarousel() {
+            const translateX = -currentIndex * slideWidth;
+            carousel.style.transform = `translateX(${translateX}px)`;
+            
+            // Update dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        function currentSlide(n) {
+            currentIndex = n - 1;
+            updateCarousel();
+        }
+
+        function startAutoplay() {
+            autoplayInterval = setInterval(nextSlide, 4000);
+        }
+
+        function stopAutoplay() {
+            clearInterval(autoplayInterval);
+        }
+
+        function toggleAutoplay() {
+            if (isAutoPlaying) {
+                stopAutoplay();
+                playPauseBtn.textContent = '▶️ Play';
+                isAutoPlaying = false;
+            } else {
+                startAutoplay();
+                playPauseBtn.textContent = '⏸️ Pause';
+                isAutoPlaying = true;
+            }
+        }
+
+        // Touch/swipe support for mobile
+        let startX = 0;
+        let isDragging = false;
+
+        carousel.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            isDragging = true;
+            stopAutoplay();
+        });
+
+        carousel.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+        });
+
+        carousel.addEventListener('touchend', (e) => {
+            if (!isDragging) return;
+            
+            const endX = e.changedTouches[0].clientX;
+            const diffX = startX - endX;
+            
+            if (Math.abs(diffX) > 50) {
+                if (diffX > 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+            }
+            
+            isDragging = false;
+            if (isAutoPlaying) {
+                startAutoplay();
+            }
+        });
+
+        // Mouse drag support for desktop
+        let mouseStartX = 0;
+        let isMouseDragging = false;
+
+        carousel.addEventListener('mousedown', (e) => {
+            mouseStartX = e.clientX;
+            isMouseDragging = true;
+            carousel.style.cursor = 'grabbing';
+            stopAutoplay();
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isMouseDragging) return;
+            e.preventDefault();
+        });
+
+        document.addEventListener('mouseup', (e) => {
+            if (!isMouseDragging) return;
+            
+            const endX = e.clientX;
+            const diffX = mouseStartX - endX;
+            
+            if (Math.abs(diffX) > 50) {
+                if (diffX > 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+            }
+            
+            isMouseDragging = false;
+            carousel.style.cursor = 'grab';
+            if (isAutoPlaying) {
+                startAutoplay();
+            }
+        });
+
+        // Pause on hover
+        carousel.addEventListener('mouseenter', stopAutoplay);
+        carousel.addEventListener('mouseleave', () => {
+            if (isAutoPlaying) {
+                startAutoplay();
+            }
+        });
+
+        // Initialize
+        updateCarousel();
+        startAutoplay();
+
+        // Responsive handling
+        function handleResize() {
+            updateCarousel();
+        }
+
+        window.addEventListener('resize', handleResize);
+    </script>
 </body>
 </html>

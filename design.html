@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Fiesta 2025 - Ultimate UI/UX Design Celebration</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --neon-blue: #00f5ff;
+            --neon-purple: #8a2be2;
+            --neon-pink: #ff1493;
+            --neon-green: #39ff14;
+            --dark-bg: #0a0a0a;
+            --card-bg: rgba(15, 15, 30, 0.9);
+        }
+        
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: linear-gradient(45deg, #0a0a0a, #1a0033, #000d1a);
+            color: white;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(0, 245, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(138, 43, 226, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 20, 147, 0.1) 0%, transparent 50%);
+            animation: bgShift 10s ease-in-out infinite alternate;
+        }
+        
+        @keyframes bgShift {
+            0% { transform: rotate(0deg) scale(1); }
+            100% { transform: rotate(5deg) scale(1.1); }
+        }
+        
+        /* Scrolling Text */
+        .scrolling-text {
+            position: fixed;
+            top: 50%;
+            left: 0;
+            width: 200%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+            z-index: -1;
+            animation: scroll 15s linear infinite;
+        }
+        
+        @keyframes scroll {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--neon-blue);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--neon-blue);
+            text-shadow: 0 0 20px var(--neon-blue);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--neon-pink);
+            text-shadow: 0 0 10px var(--neon-pink);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-pink);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(3rem, 8vw, 8rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px var(--neon-blue)); }
+            to { filter: drop-shadow(0 0 40px var(--neon-pink)); }
+        }
+        
+        .hero .subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            margin-bottom: 2rem;
+            color: var(--neon-green);
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .moving-text {
+            position: absolute;
+            font-size: 1.5rem;
+            color: var(--neon-blue);
+            animation: moveText 20s linear infinite;
+            opacity: 0.7;
+        }
+        
+        .moving-text:nth-child(1) { top: 20%; animation-delay: 0s; }
+        .moving-text:nth-child(2) { top: 60%; animation-delay: 5s; }
+        .moving-text:nth-child(3) { top: 80%; animation-delay: 10s; }
+        
+        @keyframes moveText {
+            0% { transform: translateX(-100vw); }
+            100% { transform: translateX(100vw); }
+        }
+        
+        /* CTA Buttons */
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-decoration: none;
+            border: 2px solid;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn-primary {
+            color: var(--neon-blue);
+            border-color: var(--neon-blue);
+            animation: blink 2s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.7; }
+        }
+        
+        .btn-secondary {
+            color: var(--neon-pink);
+            border-color: var(--neon-pink);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 245, 255, 0.3);
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        /* Sections */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(2rem, 5vw, 4rem);
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--neon-purple);
+            text-shadow: 0 0 20px var(--neon-purple);
+        }
+        
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid var(--neon-blue);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(0, 245, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+        
+        .feature-card:hover::before {
+            opacity: 1;
+            animation: shine 1.5s ease-in-out;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 245, 255, 0.3);
+            border-color: var(--neon-pink);
+        }
+        
+        .feature-card h3 {
+            color: var(--neon-green);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .gallery-item {
+            aspect-ratio: 1;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:nth-child(1)::before { content: 'Live Figma Challenges'; }
+        .gallery-item:nth-child(2)::before { content: 'Wireframe Battles'; }
+        .gallery-item:nth-child(3)::before { content: 'Design Reviews'; }
+        .gallery-item:nth-child(4)::before { content: 'Mentor Sessions'; }
+        .gallery-item:nth-child(5)::before { content: 'Creative Workshops'; }
+        .gallery-item:nth-child(6)::before { content: 'Portfolio Reviews'; }
+        
+        .gallery-item:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 15px 30px rgba(138, 43, 226, 0.4);
+        }
+        
+        .gallery-item:hover::before {
+            opacity: 1;
+        }
+        
+        /* Registration Form */
+        .registration {
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 2px solid var(--neon-purple);
+            margin: 3rem 0;
+            position: relative;
+        }
+        
+        .registration::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple), var(--neon-pink), var(--neon-green));
+            border-radius: 20px;
+            z-index: -1;
+            animation: borderGlow 3s linear infinite;
+        }
+        
+        @keyframes borderGlow {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+        
+        .form-group {
+            margin-bottom: 2rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--neon-blue);
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--neon-blue);
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 15px rgba(255, 20, 147, 0.3);
+        }
+        
+        /* Footer */
+        footer {
+            background: rgba(10, 10, 10, 0.95);
+            padding: 3rem 2rem 1rem;
+            text-align: center;
+            border-top: 1px solid var(--neon-blue);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .social-links a {
+            color: var(--neon-blue);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--neon-pink);
+            transform: scale(1.2);
+            text-shadow: 0 0 15px var(--neon-pink);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+        
+        /* Stationary Lines */
+        .stationary-lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .line {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+            height: 1px;
+        }
+        
+        .line:nth-child(1) {
+            top: 25%;
+            left: 0;
+            width: 100%;
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        .line:nth-child(2) {
+            top: 75%;
+            left: 0;
+            width: 100%;
+            animation: pulse 4s ease-in-out infinite 2s;
+        }
+        
+        .line:nth-child(3) {
+            left: 25%;
+            top: 0;
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(0deg, transparent, var(--neon-purple), transparent);
+            animation: pulse 4s ease-in-out infinite 1s;
+        }
+        
+        .line:nth-child(4) {
+            right: 25%;
+            top: 0;
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(0deg, transparent, var(--neon-pink), transparent);
+            animation: pulse 4s ease-in-out infinite 3s;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    <div class="scrolling-text"></div>
+    
+    <div class="stationary-lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+    
+    <header>
+        <nav>
+            <div class="logo">DESIGN FIESTA</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#register">Register</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="home" class="hero">
+            <div class="moving-text">✨ DESIGN • CREATE • INNOVATE ✨</div>
+            <div class="moving-text">🎨 UI/UX MASTERY AWAITS 🎨</div>
+            <div class="moving-text">🚀 JOIN THE FUTURE OF DESIGN 🚀</div>
+            
+            <h1>DESIGN FIESTA</h1>
+            <p class="subtitle">The Ultimate UI/UX Design Celebration 2025</p>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--neon-green);">
+                One Day • Infinite Possibilities • Pure Creative Energy
+            </p>
+            
+            <div class="cta-buttons">
+                <a href="#register" class="btn btn-primary">JOIN NOW!</a>
+                <a href="#about" class="btn btn-secondary">Discover More</a>
+            </div>
+        </section>
+        
+        <section id="about" class="section">
+            <h2>EXPERIENCE THE MAGIC</h2>
+            <p style="text-align: center; font-size: 1.3rem; margin-bottom: 3rem; color: var(--neon-blue);">
+                A one-day celebration of UI/UX design and creative thinking that will transform your design journey forever!
+            </p>
+            
+            <div class="about-grid">
+                <div class="feature-card">
+                    <h3>🎯 Live Figma Challenges</h3>
+                    <p>Battle it out in real-time design challenges using Figma. Show off your skills, learn new techniques, and compete with fellow designers in an electrifying atmosphere!</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>⚡ Wireframe Battles</h3>
+                    <p>Speed wireframing competitions that will test your creativity and problem-solving skills. Think fast, design faster, and create amazing user experiences under pressure!</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>🌟 Expert Design Reviews</h3>
+                    <p>Get your portfolio reviewed by top industry professionals and design mentors. Receive valuable feedback that will elevate your design career to the next level!</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>🚀 Mentorship Sessions</h3>
+                    <p>One-on-one sessions with design legends who've shaped the industry. Learn their secrets, get career advice, and build connections that last a lifetime!</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>💡 Creative Workshops</h3>
+                    <p>Hands-on workshops covering the latest design trends, tools, and methodologies. From design systems to user research - expand your skillset exponentially!</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>🎊 Networking Fiesta</h3>
+                    <p>Connect with like-minded designers, potential collaborators, and industry leaders. Build your design community and create opportunities for the future!</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="events" class="section">
+            <h2>EVENT HIGHLIGHTS</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+</html>  
+</html>
+             
+                </div>
+                <div class="gallery-item"></div>
+                <div class="gallery-item"></div>
+                <div class="gallery-item"></div>
+                <div class="gallery-item"></div>
+                <div class="gallery-item"></div>
+            </div>
+        </section>
+        
+        <section id="register" class="section">
+            <h2>REGISTER NOW</h2>
+            <div class="registration">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="experience">Design Experience Level</label>
+                        <select id="experience" name="experience" required>
+                            <option value="">Select your level</option>
+                            <option value="beginner">Beginner (0-1 years)</option>
+                            <option value="intermediate">Intermediate (2-4 years)</option>
+                            <option value="advanced">Advanced (5+ years)</option>
+                            <option value="expert">Expert (10+ years)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tools">Favorite Design Tools</label>
+                        <input type="text" id="tools" name="tools" placeholder="e.g., Figma, Adobe XD, Sketch...">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="portfolio">Portfolio URL (Optional)</label>
+                        <input type="url" id="portfolio" name="portfolio" placeholder="https://your-portfolio.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="expectations">What do you hope to gain from Design Fiesta?</label>
+                        <textarea id="expectations" name="expectations" rows="4" placeholder="Tell us about your goals and expectations..."></textarea>
+                    </div>
+                    
+                    <div class="cta-buttons">
+                        <button type="submit" class="btn btn-primary">SECURE YOUR SPOT!</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <h3 style="color: var(--neon-purple); margin-bottom: 1rem;">DESIGN FIESTA 2025</h3>
+            <p style="margin-bottom: 2rem;">Where creativity meets innovation and dreams become reality!</p>
+            
+            <div class="social-links">
+                <a href="#">📘 Facebook</a>
+                <a href="#">📷 Instagram</a>
+                <a href="#">🐦 Twitter</a>
+                <a href="#">💼 LinkedIn</a>
+                <a href="#">🎨 Dribbble</a>
+            </div>
+            
+            <p style="color: var(--neon-blue); margin-top: 2rem;">
+                © 2025 Design Fiesta. All rights reserved. | Crafted with 💜 for designers worldwide
+            </p>
+        </div>
+    </footer>
+    
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('🎉 Registration Successful! Welcome to Design Fiesta 2025! We\'ll send you more details soon.');
+        });
+        
+        // Add dynamic glow effect to cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'glow 2s ease-in-out infinite alternate';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.feature-card').forEach(card => {
+            observer.observe(card);
+        });
+        
+        // Add cursor trail effect
+        let mouseX = 0, mouseY = 0;
+        let trailX = 0, trailY = 0;
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+        
+        function animateTrail() {
+            trailX += (mouseX - trailX) * 0.1;
+            trailY += (mouseY - trailY) * 0.1;
+            
+            const trail = document.querySelector('.bg-animation');
+            if (trail) {
+                trail.style.background += `, radial-gradient(circle at ${trailX}px ${trailY}px, rgba(0, 245, 255, 0.05) 0%, transparent 50%)`;
+            }
+            
+            requestAnimationFrame(animateTrail);
+        }
+        
+        animateTrail();
+    </script>
+</body>
+</html>
