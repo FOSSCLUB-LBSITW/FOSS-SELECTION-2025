@@ -4,24 +4,22 @@ Submitted by [ASAMSA B M]:
 
 
 Workflow: How to Clone and Contribute:
+
  1⃣ Fork the Repository
 
  Click the "Fork" button on the top right of this page to create a copy under your GitHub account.
 
  Navigate to the official repository.
   https://github.com/FOSSCLUB-LBSITW/FOSS-SELECTION-2025.git
-
 Click the Fork button to create a copy in your GitHub account.
+
  2⃣ Clone to Your Local System
 git clone https://github.com/AsamsaBiju/FOSS-SELECTION-2025.git
 
 3⃣ Make Changes
-
 Edit files like index.html, style.css, or add new content as needed
 
-
 4⃣ Add, Commit, and Push
- 
  git add .
  git commit -m "Describe your changes"
  git push origin main
