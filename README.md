@@ -22,7 +22,7 @@ Run the following command in the terminal:
 
 ```bash
 git clone https://github.com/AsamsaBiju/FOSS-SELECTION-2025.git
-cd FOSS-SELECTION-2025 ```
+cd FOSS-SELECTION-2025```
 
 
 3️⃣ Make Changes
