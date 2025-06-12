@@ -11,20 +11,13 @@ body {
   background-attachment: fixed;
 }
 
-/*.section-title {
-  text-align: center;
-  font-size: 2rem;
-  margin: 2rem 0 1rem;
-  color: #ffffff;
-}*/
 .section-title {
 font-family: 'Oswald';
-  font-size: 3rem; /* Adjust size to emphasize length */
-  font-weight: 300; /* This is 'Light'. You can also try 200 for 'Extra-Light' */
-  letter-spacing: 2px; /* A bit of letter-spacing enhances the thin look */
-  text-transform: uppercase; /* Often pairs well with condensed fonts */
-  color: #ffffff; /* Or a cool gray/blue */
-  /* Add other styles like text-shadow if desired for emphasis */
+  font-size: 3rem; 
+  font-weight: 300; 
+  letter-spacing: 2px;
+  text-transform: uppercase; 
+  color: #ffffff; 
   text-align: center;
 
 }
