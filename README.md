@@ -49,7 +49,7 @@ Use a code editor like VS Code to:
 
 4. Stage, Commit, and Push Changes
 bash ```git add .```
-   ```git commit -m "Added new events and updated README"```
+   ```git commit -m "Added event cards"```
   ``` git push origin main```
 
 6. Create a Pull Request
