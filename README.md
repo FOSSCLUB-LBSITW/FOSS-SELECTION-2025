@@ -38,8 +38,34 @@ This project enhances the base template by adding 3 custom events along with Hac
 - JavaScript (basic interactions)  
 - Google Fonts: Space Grotesk & Poppins
 
+## 📁 Project Structure
+
+index.html → Homepage
+code.html → CodeCraft 2025
+design.html → Design Fiesta
+bug.html → Bug Hunt Blitz
+assets/ → Logos, banners, screenshots
 
 
+## 🙋‍♀️ Submitted By
 
-Designed and developed by [Deborah T.](https://github.com/deboraht07)  
-Submitted as part of the FOSS Tech Team Challenge 2025.
+**Deborah T.**  
+GitHub: [@deboraht07](https://github.com/deboraht07)
+
+---
+
+## ⚙️ Workflow: How to Clone and Contribute
+
+### 1⃣ Fork the Repository
+Navigate to the official repository.  
+Click the **Fork** button in the top-right corner to create a copy under your GitHub account.
+
+### 2⃣ Clone to Your Local System
+
+Open your terminal and run:
+
+```bash
+git clone https://github.com/your-username/FOSS-SELECTION-2025.git
+cd FOSS-SELECTION-2025
+
+ 
