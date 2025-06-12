@@ -4,18 +4,29 @@ body {
   margin: 0;
   padding: 0;
   background-color: #f9f9f9;
-  background-image: url('https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWdhajdwdXp0eDR1ZTNlbnkyeXY2bmlvZGVsdzUzYnk3djZwdXhzaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/YnjxvrvonPCcDtdppt/giphy.gif');
+  background-image: url('./assets/bckcover.gif');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
+  background-attachment: fixed;
 }
 
-.section-title {
+/*.section-title {
   text-align: center;
   font-size: 2rem;
   margin: 2rem 0 1rem;
-  color: #333;
+  color: #ffffff;
+}*/
+.section-title {
+font-family: 'Oswald';
+  font-size: 3rem; /* Adjust size to emphasize length */
+  font-weight: 300; /* This is 'Light'. You can also try 200 for 'Extra-Light' */
+  letter-spacing: 2px; /* A bit of letter-spacing enhances the thin look */
+  text-transform: uppercase; /* Often pairs well with condensed fonts */
+  color: #ffffff; /* Or a cool gray/blue */
+  /* Add other styles like text-shadow if desired for emphasis */
+  text-align: center;
+
 }
 
 .card-container {
@@ -28,22 +39,17 @@ body {
 }
 
 .event-card {
-  background-color: #fff;
+  background-color: #fbf3ff;
   padding: 1.5rem;
   border-radius: 15px;
   box-shadow: 0 0 4px 10px rgba(119, 113, 194, 0.08);
-  width: 300px;
-  max-width: 400px;
+  width: 250px;
+  max-width: 220px;
   text-align: left;
   transition: transform 0.2s ease;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  
-}
-
-.event-card:hover {
-  transform: translateY(-5px);
 
 }
 
@@ -55,7 +61,7 @@ body {
 
 .event-desc {
   font-size: 1rem;
-  color: #555;
+  color: #000000;
   margin-bottom: 1rem;
   flex-grow: 1;
 }
@@ -66,6 +72,30 @@ body {
   font-weight: bold;
   margin-top: auto;
 }
+
+.event-card:hover {
+  transform: translateY(-5px);
+  background-image: url('./assets/cover.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.event-card:hover .event-title,
+.event-card:hover .event-desc {
+  color: #fff; 
+  transition: color 0.3s ease; 
+}
+
+.event-card:hover .event-link {
+    color: #add8e6; 
+    transition: color 0.3s ease;
+}
+
+.event-link:hover {
+  text-decoration: underline;
+}
+
 /* Image Section */
 .image-section {
   padding: 2rem 1rem;
@@ -88,6 +118,4 @@ body {
 }
 
 
-.event-link:hover {
-  text-decoration: underline;
-}
+
