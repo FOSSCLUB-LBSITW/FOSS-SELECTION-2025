@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bug Hunt Blitz 2025 - The Ultimate Debugging Competition</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        .floating-bugs {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            top: 0;
+            left: 0;
+        }
+        
+        .bug {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle at 30% 30%, #ff4444, #cc0000);
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: float 15s infinite linear;
+        }
+        
+        .bug::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 6px;
+            height: 6px;
+            background: #000;
+            border-radius: 50%;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+        
+        .glowing-text {
+            text-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88, 0 0 30px #00ff88;
+            animation: pulse 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes pulse {
+            from {
+                text-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88, 0 0 30px #00ff88;
+            }
+            to {
+                text-shadow: 0 0 15px #00ff88, 0 0 25px #00ff88, 0 0 35px #00ff88, 0 0 40px #00ff88;
+            }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        header {
+            padding: 2rem 0;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid #00ff88;
+        }
+        .logo img {
+  width: 60%;
+  height: auto;
+  max-height: 60%;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+        .logo {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 1rem;
+            background: linear-gradient(45deg, #ff4444, #cc0000);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border: 3px solid #00ff88;
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+        }
+        
+        .logo::after {
+            content: '🐞 ';
+            font-size: 4rem;
+            position: absolute;
+        }
+        
+        h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00ff88, #00ccff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            color: #cccccc;
+            margin-bottom: 2rem;
+        }
+        
+        .cta-button {
+            background: linear-gradient(45deg, #ff4444, #ff6666);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(255, 68, 68, 0.5);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 30px rgba(255, 68, 68, 0.8);
+        }
+        
+        .section {
+            padding: 4rem 0;
+            position: relative;
+        }
+        
+        .section h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #00ff88;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: #00ff88;
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .photo-wall {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 3rem 0;
+        }
+        
+        .photo-placeholder {
+            height: 200px;
+            background: linear-gradient(45deg, #2a2a2a, #404040);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-size: 1.1rem;
+            border: 2px solid rgba(0, 255, 136, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .photo-placeholder:hover {
+            border-color: #00ff88;
+            transform: scale(1.05);
+        }
+        
+        .registration-form {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            border: 2px solid #00ff88;
+            box-shadow: 0 0 40px rgba(0, 255, 136, 0.2);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #00ff88;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            font-size: 1rem;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #00ff88;
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .contact-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+        }
+        
+        .moving-text {
+            position: fixed;
+            top: 20%;
+            right: -300px;
+            font-size: 1.2rem;
+            color: #00ff88;
+            animation: slideText 20s linear infinite;
+            z-index: 5;
+            pointer-events: none;
+        }
+        
+        @keyframes slideText {
+            0% {
+                right: -300px;
+            }
+            100% {
+                right: 100%;
+            }
+        }
+        
+        footer {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 2px solid #00ff88;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section h2 {
+                font-size: 2rem;
+            }
+            
+            .registration-form {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-bugs" id="floatingBugs"></div>
+    <div class="moving-text"> SQUASH THE BUGS • CLAIM THE GLORY • JOIN THE HUNT 🐞 </div>
+    
+    <header>
+        <div class="container">
+            <div class="logo"></div>
+            <h1 class="glowing-text">BUG HUNT BLITZ 2025</h1>
+            <p class="subtitle">The Ultimate Fast-Paced Debugging Competition</p>
+            <a href="#register" class="cta-button">REGISTER NOW</a>
+        </div>
+    </header>
+    
+    <main>
+        <section class="section">
+            <div class="container">
+                <h2>Why Join the Hunt?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Sharpen Your Skills</h3>
+                        <p>Master the art of debugging, reverse engineering, and solving complex logic puzzles that will set you apart in the tech world.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🏆</div>
+                        <h3>Win Amazing Prizes</h3>
+                        <p>Compete for exciting rewards, certificates, and recognition that will boost your programming portfolio.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🤝</div>
+                        <h3>Team Collaboration</h3>
+                        <p>Work with brilliant minds, build lasting connections, and learn from the best debuggers in the community.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Fast-Paced Action</h3>
+                        <p>Experience the adrenaline rush of racing against time to squash bugs in challenging legacy codebases.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔍</div>
+                        <h3>Real-World Experience</h3>
+                        <p>Gain hands-on experience with actual debugging scenarios you'll encounter in professional software development.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🌟</div>
+                        <h3>Industry Recognition</h3>
+                        <p>Get noticed by tech recruiters and industry professionals who value strong debugging and problem-solving skills.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="logo">
+  <img src="Bug Hunt Blitz logo .png" alt="Bug Hunt Blitz Logo">
+</div>
+
+        
+        <section class="section" style="background: rgba(0, 0, 0, 0.2);">
+            <div class="container">
+                <h2>Photo Wall - Previous Events</h2>
+                <div class="photo-wall">
+                    <div class="photo-placeholder">🐛 Teams in Action</div>
+                    <div class="photo-placeholder">💻 Intense Debugging</div>
+                    <div class="photo-placeholder">🏆 Victory Moments</div>
+                    <div class="photo-placeholder">🤝 Team Collaboration</div>
+                    <div class="photo-placeholder">⚡ Code Analysis</div>
+                    <div class="photo-placeholder">🎯 Problem Solving</div>
+                    <div class="photo-placeholder">🌟 Award Ceremony</div>
+                    <div class="photo-placeholder">🔥 Competition Heat</div>
+                </div>
+                <p style="text-align: center; margin-top: 2rem; color: #888; font-style: italic;">
+                    Replace these placeholders with your actual event photos and logo!
+                </p>
+            </div>
+        </section>
+        
+        <section class="section" id="about">
+            <div class="container">
+                <h2>About FOSS Club</h2>
+                <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                    <p style="font-size: 1.2rem; line-height: 1.8; margin-bottom: 2rem;">
+                        The FOSS Club is a vibrant community of passionate developers, innovators, and tech enthusiasts dedicated to promoting Free and Open Source Software. Our active team of skilled members organizes cutting-edge events, workshops, and competitions that foster learning, collaboration, and technological excellence. With a strong foundation in community building and technical expertise, we create opportunities for students and professionals to enhance their skills, network with industry leaders, and contribute to the open source ecosystem.
+                    </p>
+                    <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 3rem;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 2rem; color: #00ff88;">500+</div>
+                            <div style="color: #ccc;">Active Members</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 2rem; color: #00ff88;">50+</div>
+                            <div style="color: #ccc;">Events Organized</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 2rem; color: #00ff88;">100+</div>
+                            <div style="color: #ccc;">Projects Completed</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section" id="register">
+            <div class="container">
+                <h2>Register Your Team</h2>
+                <div class="registration-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="teamName">Team Name</label>
+                            <input type="text" id="teamName" name="teamName" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="teamLeader">Team Leader Name</label>
+                            <input type="text" id="teamLeader" name="teamLeader" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="institution">Institution/Organization</label>
+                            <input type="text" id="institution" name="institution" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="teamSize">Team Size</label>
+                            <select id="teamSize" name="teamSize" required>
+                                <option value="">Select team size</option>
+                                <option value="2">2 members</option>
+                                <option value="3">3 members</option>
+                                <option value="4">4 members</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="experience">Programming Experience Level</label>
+                            <select id="experience" name="experience" required>
+                                <option value="">Select experience level</option>
+                                <option value="beginner">Beginner (0-1 years)</option>
+                                <option value="intermediate">Intermediate (1-3 years)</option>
+                                <option value="advanced">Advanced (3+ years)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="languages">Preferred Programming Languages</label>
+                            <textarea id="languages" name="languages" rows="3" placeholder="e.g., Python, Java, C++, JavaScript..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="cta-button" style="width: 100%; margin-top: 1rem;">
+                            REGISTER TEAM
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section" id="contact">
+            <div class="container">
+                <h2>Contact Us</h2>
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="feature-icon">📧</div>
+                        <h3>Email</h3>
+                        <p>bughunt2025@fossclub.org</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>Phone</h3>
+                        <p>+91 98765 43210</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="feature-icon">🌐</div>
+                        <h3>Website</h3>
+                        <p>www.fossclub.org</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="feature-icon">📍</div>
+                        <h3>Venue</h3>
+                        <p>To be announced soon</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 FOSS Club. All rights reserved. | Bug Hunt Blitz 2025</p>
+            <p style="margin-top: 1rem; color: #888;">
+                Ready to squash some bugs? The hunt begins soon! 🐛
+            </p>
+        </div>
+    </footer>
+    
+    <script>
+        // Create floating bugs
+        function createBug() {
+            const bug = document.createElement('div');
+            bug.className = 'bug';
+            bug.style.left = Math.random() * 100 + '%';
+            bug.style.animationDelay = Math.random() * 15 + 's';
+            bug.style.animationDuration = (15 + Math.random() * 10) + 's';
+            document.getElementById('floatingBugs').appendChild(bug);
+            
+            setTimeout(() => {
+                bug.remove();
+            }, 25000);
+        }
+        
+        // Create bugs periodically
+        setInterval(createBug, 2000);
+        
+        // Initial bugs
+        for (let i = 0; i < 5; i++) {
+            setTimeout(createBug, i * 500);
+        }
+        
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Form submission handler
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Registration submitted! We will contact you soon with further details.');
+        });
+        
+        // Add some interactive effects
+        document.addEventListener('mousemove', function(e) {
+            const cursor = document.querySelector('.cursor');
+            if (!cursor) {
+                const newCursor = document.createElement('div');
+                newCursor.className = 'cursor';
+                newCursor.style.cssText = `
+                    position: fixed;
+                    width: 20px;
+                    height: 20px;
+                    background: radial-gradient(circle, #00ff88, transparent);
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: 9999;
+                    opacity: 0.3;
+                `;
+                document.body.appendChild(newCursor);
+            }
+            
+            const cursorElement = document.querySelector('.cursor');
+            cursorElement.style.left = e.clientX - 10 + 'px';
+            cursorElement.style.top = e.clientY - 10 + 'px';
+        });
+    </script>
+</body>
+</html>
