@@ -10,7 +10,7 @@ Workflow: How to Clone and Contribute:
  Click the "Fork" button on the top right of this page to create a copy under your GitHub account.
 
  Navigate to the official repository.
-  https://github.com/FOSSCLUB-LBSITW/FOSS-SELECTION-2025.git
+  'https://github.com/FOSSCLUB-LBSITW/FOSS-SELECTION-2025.git'
 Click the Fork button to create a copy in your GitHub account.
 
  2⃣ Clone to Your Local System
