@@ -65,7 +65,7 @@ Click the **Fork** button in the top-right corner to create a copy under your Gi
 Open your terminal and run:
 
 ```bash
-git clone https://github.com/your-username/FOSS-SELECTION-2025.git
+git clone https://github.com/deboraht07/FOSS-SELECTION-2025.git
 cd FOSS-SELECTION-2025
 
  
