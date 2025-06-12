@@ -2,7 +2,10 @@
 
 A responsive multi-event website built for the Tech Team Challenge 2025 by FOSS Club, LBSITW.
 
-## 🔍 Overview
+🔗 **Live Demo:** [Click here to view the website](https://deboraht07.github.io/FOSS-SELECTION-2025/)
+
+
+## 📌 Overview
 
 This project enhances the base template by adding 3 custom events along with Hacktoberfest 2025. Each event includes its own dedicated page with an engaging layout, glowing UI, responsive design, and interactive registration.
 
@@ -37,3 +40,6 @@ This project enhances the base template by adding 3 custom events along with Hac
 
 
 
+
+Designed and developed by [Deborah T.](https://github.com/deboraht07)  
+Submitted as part of the FOSS Tech Team Challenge 2025.
